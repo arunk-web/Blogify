@@ -18,10 +18,13 @@
         <%= blog.createdBy.fullName %>
     </div>
 
+
     <div class="container mt-3">
-        <h1>Comments</h1>
-        <% if (locals.user) { %>
-            <form action="/user/signin" method="post">
+        <h1>Comments (<%= comments.length %>) </h1>
+        <!-- JO USER LOG IN HOGAA WHIII COMMENT KR PAYEGAA -->
+        <% if (locals.user) { %>  
+            <!-- <!-action me route likha jata haiii-  -->
+            <form action="/blog/comment/<%= blog._id %>" method="post">
             <div class="mb-3">
                 <!-- <label for="exampleInputEmail" class="form-label">Email address</label> -->
                 <input 
@@ -34,6 +37,16 @@
             </div>
         </form>
         <% } %>
+        
+        <div class="mt-3">
+            <% comments.forEach(comment => { %>
+                <div>
+                    <img src="<%= comment.createdBy.profileImageURL %>" width="50px" />
+                    <%= comment.createdBy.fullName %>  
+                    <pre><%= comment.content %></pre>
+                </div>
+            <% }) %>
+        </div>
     </div>
     
 

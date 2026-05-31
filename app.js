@@ -1,3 +1,6 @@
+require("dotenv").config();
+
+
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -9,10 +12,12 @@ const Blog = require('./models/blog')
 
 const {checkForAuthenticationCookie} = require("./middlewares/authentication");
 
+///this is an index.js file but it is renamed as app.js at the time of deployment
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
-mongoose.connect('mongodb://localhost:27017/blogify').then((e)=> console.log('mongodb connected'))
+// normally jb hm project bna rhe honge toh y link rhegiii mongo ki pr deploy krne se phle changee ho jayegii   ye => ('mongodb://localhost:27017/blogify')
+mongoose.connect(process.env.MONGO_URL).then((e)=> console.log('mongodb connected'))
 
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
