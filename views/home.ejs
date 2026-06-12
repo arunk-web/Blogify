@@ -9,11 +9,11 @@
     <!-- <%= JSON.stringify(blogs) %> -->
     
     <div class="container mt-3">
-        <div class="row row-cols-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-5">
         <% blogs.forEach(blog => { %>
             <div class="col">
-                <div class="card col" style="width: 18rem">
-                <img src="<%= blog.coverImageURL %>" class="card-img-top">
+                <div class="card h-100">
+                <img src="<%= blog.coverImageURL %>" class="card-img-top" style="height: 200px; object-fit: cover;">
                 <div class="card-body">
                     <h5 class="card-title"><%= blog.title %></h5>
                     <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
